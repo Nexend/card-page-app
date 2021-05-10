@@ -118,7 +118,13 @@ const Modal = ({ active, setActive, children }) => {
             onChange={handleChange}
             onBlur={e => blurHandler(e)}
           />
-          {nameError && <div className="user-info__error user-info__error-name">{nameError}</div>}
+
+          {nameError && (
+            <div className="user-info__error user-info__error-name">
+              {nameError}
+              <i className="fas fa-times-circle error-icon__name"></i>
+            </div>
+          )}
 
           <input
             className={numberError ? 'user-info__input-error user-info__input' : 'user-info__input'}
@@ -129,10 +135,17 @@ const Modal = ({ active, setActive, children }) => {
             onChange={handleChange}
             onBlur={e => blurHandler(e)}
           />
-          {numberError && <div className="user-info__error">{numberError}</div>}
+
+          {numberError && (
+            <div className="user-info__error">
+              {numberError}
+              <i className="fas fa-times-circle error-icon__number"></i>
+            </div>
+          )}
 
           <button className="user-info__btn" type="submit">
             ORDER
+            <i className="fas fa-arrow-right user-info__btn-arrow"></i>
           </button>
         </form>
       </div>
