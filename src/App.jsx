@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { fetchProductsList } from './gateway/products';
-import Card from './Card';
-import Modal from './Modal';
-import ChoosenCard from './ChoosenCard';
+import Card from './components/Card';
+import Modal from './components/Modal';
+import ChoosenCard from './components/ChoosenCard';
 
 const App = () => {
   const [productsList, setProductsList] = useState([]);
@@ -13,7 +13,7 @@ const App = () => {
     fetchProductsList().then(products => setProductsList(products));
   }, []);
 
-  if (!productsList) {
+  if (productsList.length === 0) {
     return null;
   }
 
@@ -31,15 +31,15 @@ const App = () => {
 
   return (
     <>
-      {choosenProduct ? (
-        <Modal active={modalActive} setActive={setModalActive}>
+      <Modal active={modalActive} setActive={setModalActive}>
+        {choosenProduct && (
           <ChoosenCard
             name={choosenProduct.name}
             category={choosenProduct.category}
             price={choosenProduct.price}
           />
-        </Modal>
-      ) : null}
+        )}
+      </Modal>
 
       <div className="page">
         <div className="container">
